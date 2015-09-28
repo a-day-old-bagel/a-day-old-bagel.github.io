@@ -1,0 +1,42 @@
+create theta_target, phi_target, zoom_target for camera
+interpolate to targets on physics loop with dt
+have theta_deadzone, phi_deadzone to snap to target once within
+
+leftclick raytrace to y = 0 make start point
+while left held each frame raytrace again to make endpoint
+
+endpoint should be scaled along line from start to end depending on phi
+so that at shallow angles there is higher cue resolution. scale will be
+inversely proportional to phi.
+OR BETTER::::
+maybe scale (range 0-1) is inv proportional to dot product of vec from startpoint to eye and
+vec from startpoint to end.
+EDIT: inv prop to abs( dot ( vec start - eye, arrowVec ) )
+
+inverse of arrowVec is applied to Cue's matrix while leftclick is down
+
+once leftclickUP a vec (arrowVec * something) is applied to vel of cBall.
+Cue's matrix is made to snap back to cue ball position in a forcefull-looking way
+(maybe a follow-through)
+then cue dissappears until balls have stopped moving.
+cannot re-hit ball until all motion stopped (ball motion also has deadzone)
+
+arrow needs own shader
+an HTML text might be shown on window to display the current arrowVec length as "power"
+arrow from start to scaled end should be drawn using linestrip where y = 0.001 or something:
+
+verts : [
+  0, y, 0.25,
+  -0.125, y, 0.25,
+  0, y, 0,
+  0.125, y, 0.25,
+  0, y, 0.25,
+  0, y, 1.0
+        ]
+
+endPoint = vec3(endPoint[0] * scale, endPoint[1] * scale, endPoint[2] * scale);
+
+// var arrowVec = vec3(subtract(endPoint, startPoint));
+// var arrowCrossVec = vec3(cross(arrowVec, vec3(0, 1, 0)));
+
+dist = length(subtract(endPoint, startPoint));
