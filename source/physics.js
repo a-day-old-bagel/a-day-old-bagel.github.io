@@ -8,7 +8,7 @@ var physics = {
   tableBoundsZ: 1.6558,
   tableBoundsX: 0.823,
   cPockSize: 0.06,
-  cPockRad: 0.1,
+  cPockRad: 0.06,
   sPockSize: 0.07,
   sPockRad: 0.06,
   sPockMargin: 0.03,
@@ -18,8 +18,8 @@ var physics = {
 
   animate: function() {
 
-    newTime = performance.now();
-    var dt = newTime - this.oldTime;
+    this.newTime = performance.now();
+    var dt = this.newTime - this.oldTime;
 
     camera.tickShmooze(dt);
 
@@ -214,12 +214,13 @@ var physics = {
       cue.strikeAnim(dt);
     }
 
-    this.oldTime = newTime;
+    this.oldTime = this.newTime;
   },
 
   ballInPocket: function(ballNum) {
     if (ballNum == 0) {
       alert('SCRATCH!');
+      this.newTime = performance.now();
       this.isScratched = true;
       ball.position[0] = [0, 0];
       ball.velocity[0] = [0, 0.00002];
