@@ -91,6 +91,10 @@ var graphics = {
 
   init: function(canvas) {
     // Initialize WebGL
+    
+    this.width = canvas.width;
+    this.height = canvas.height;
+
     gl = WebGLUtils.setupWebGL(canvas);
     vao_ext = gl.getExtension('OES_vertex_array_object');
     if (!gl) {
@@ -103,8 +107,6 @@ var graphics = {
     } else {
       console.log('VAO extension Initialized.');
     }
-    this.width = canvas.width;
-    this.height = canvas.height;
 
     // Configure WebGL
     gl.viewport(0, 0, this.width, this.height);

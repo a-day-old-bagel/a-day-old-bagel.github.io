@@ -3,24 +3,10 @@
   <head>
     <title>Billiards</title>
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-    <link rel="stylesheet" href="graphics.css">
-    
-    <script type="text/javascript" src="common/MV.js"></script>
-    <script type="text/javascript" src="common/webgl-utils.js"></script>
-    <script type="text/javascript" src="common/initShaders.js"></script>
 
-    <script type="text/javascript" src="source/billiards.js"></script>
-    <script type="text/javascript" src="source/textures.js"></script>
-    <script type="text/javascript" src="source/controls.js"></script>
-    <script type="text/javascript" src="source/math.js"></script>
-    <script type="text/javascript" src="source/camera.js"></script>
-    <script type="text/javascript" src="source/graphics.js"></script>
-    <script type="text/javascript" src="source/physics.js"></script>
-    <script type="text/javascript" src="source/ball.js"></script>
-    <script type="text/javascript" src="source/cue.js"></script>
-    <script type="text/javascript" src="source/table.js"></script>
-    <script type="text/javascript" src="source/arrow.js"></script>
-    
+    <link rel="stylesheet" href="css/graphics.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <script id="monolithic.vert" type="text/glsl">
       attribute vec3 vert;
       attribute vec2 UV;
@@ -94,17 +80,35 @@
         gl_FragColor = vec4(diffuseColor + specColor, 1.0);        
       }
     </script>
+    
+    <script type="text/javascript" src="common/MV.js"></script>
+    <script type="text/javascript" src="common/webgl-utils.js"></script>
+    <script type="text/javascript" src="common/initShaders.js"></script>
+
+    <script type="text/javascript" src="source/billiards.js"></script>
+    <script type="text/javascript" src="source/textures.js"></script>
+    <script type="text/javascript" src="source/controls.js"></script>
+    <script type="text/javascript" src="source/math.js"></script>
+    <script type="text/javascript" src="source/camera.js"></script>
+    <script type="text/javascript" src="source/graphics.js"></script>
+    <script type="text/javascript" src="source/physics.js"></script>
+    <script type="text/javascript" src="source/ball.js"></script>
+    <script type="text/javascript" src="source/cue.js"></script>
+    <script type="text/javascript" src="source/table.js"></script>
+    <script type="text/javascript" src="source/arrow.js"></script>
 
   </head>
   
   <body>
-    <canvas id="gl-canvas" style="border: none;" width="800" height="600"></canvas>
-    <div class="instrBox">
-      <p>
-      Instructions: Click-drag to shoot, Right-click-drag to rotate view, scroll to zoom.
-      You must wait until all balls have stopped moving  before shooting again.
-      </p>
-    </div>
+    <div>
+      <canvas id="gl-canvas" style="border: none;"></canvas>
+      <div id="instrBox">
+        <p>
+        Instructions: Click-drag to shoot, Right-click-drag to rotate view, scroll to zoom.
+        You must wait until all balls have stopped moving  before shooting again.
+        </p>
+      </div>
+    </div><!--/container-->
   </body>
   
 </html>
