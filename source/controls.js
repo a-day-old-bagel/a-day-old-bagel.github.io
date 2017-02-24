@@ -1,15 +1,19 @@
+function sign(x) { // http://stackoverflow.com/questions/7624920/number-sign-in-javascript
+  return typeof x === 'number' ? x ? x < 0 ? -1 : 1 : x === x ? 0 : NaN : NaN;
+}
+
 var controls = {
   setUpEvents: function(canvas) {
 
-    window.onfocus = function renewTime(e) {
-      physics.oldTime = performance.now();
+    function doNothing(e) {
+      // just ditch that ratty context menu
+      return false;
     };
-
-    canvas.onmousedown = function setTipPoint(e) {
+    function setTipPoint(e) {
       if (e.button == 0 && physics.readyToStrike) {
         var rect = canvas.getBoundingClientRect();
         var yPlaneIntersect = rayCastPlaneY(e.clientX -
-          rect.left, e.clientY - rect.top);
+            rect.left, e.clientY - rect.top);
         if (yPlaneIntersect != null) {
           arrow.setTip(yPlaneIntersect);
           arrow.setTail(yPlaneIntersect);
@@ -19,8 +23,7 @@ var controls = {
         }
       }
     };
-
-    canvas.onmouseup = function setTailPoint(e) {
+    function setTailPoint(e) {
       if (e.button == 0 && arrow.isDragging) {
         var rect = canvas.getBoundingClientRect();
         var yPlaneIntersect = rayCastPlaneY(e.clientX -
@@ -34,13 +37,7 @@ var controls = {
         }
       }
     };
-
-    canvas.oncontextmenu = function doNothing(e) {
-      // just ditch that ratty context menu
-      return false;
-    };
-
-    canvas.onmousemove = function pan(e) {
+    function pan(e) {
       if (e.buttons & 2) { // if right click held
         camera.rotateTheta(-0.005 * e.movementX);
         camera.rotatePhi(-0.005 * e.movementY);
@@ -62,10 +59,22 @@ var controls = {
         }
       }
     };
-
-    canvas.onwheel = function zoom(e) {
-      camera.applyZoom(0.005 * e.deltaY);
+    function zoom(e) {
+      camera.applyZoom(0.25 * sign(e.deltaY));
       return false;
     };
+    function renewTime(e) {
+      physics.oldTime = performance.now();
+    };
+
+    window.onfocus = renewTime; 
+    canvas.onmousedown = setTipPoint;
+    canvas.onmouseup = setTailPoint;
+    canvas.oncontextmenu = doNothing;
+    canvas.onmousemove = pan; 
+    canvas.onwheel = zoom;
+
+//    canvas.ontouchstart = setTipPoint;
+//    canvas.ontouchend = setTailPoint;
   }
 };
