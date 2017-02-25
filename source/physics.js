@@ -15,6 +15,7 @@ var physics = {
   oldTime: performance.now(),
   readyToStrike: false,
   isScratched: false,
+  flashedMessageTime: undefined,
 
   animate: function() {
 
@@ -214,18 +215,32 @@ var physics = {
       cue.strikeAnim(dt);
     }
 
+    // update text overlay message
+    if (this.flashedMessageTime > 0) {
+      this.flashedMessageTime -= dt;
+      if (this.flashedMessageTime < 0) {
+        this.flashedMessageTime = 0;
+        graphics.textOverlay.innerHTML = "";
+      }
+    }
+
     this.oldTime = this.newTime;
+  },
+
+  flashMessage: function(text) {
+    graphics.textOverlay.innerHTML = text;
+    this.flashedMessageTime = 5000.0;
   },
 
   ballInPocket: function(ballNum) {
     if (ballNum == 0) {
-      alert('SCRATCH!');
+      this.flashMessage("SCRATCH!");
       this.newTime = performance.now();
       this.isScratched = true;
       ball.position[0] = [0, 0];
       ball.velocity[0] = [0, 0.00002];
     } else if (ballNum == 8) {
-      alert('8-BALL IN!');
+      this.flashMessage("8-BALL IN!");
       this.resetGame();
       return;
     }

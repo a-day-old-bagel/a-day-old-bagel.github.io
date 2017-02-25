@@ -3,8 +3,17 @@ function sign(x) { // http://stackoverflow.com/questions/7624920/number-sign-in-
 }
 
 var controls = {
-  setUpEvents: function(canvas) {
 
+  hammer: undefined,
+  hMan: undefined,
+  hPan: undefined,
+  hPinch: undefined,
+  hSwipe: undefined,
+
+  lastPinch: 0.0,
+
+  setUpEvents: function(canvas) {
+    
     function doNothing(e) {
       // just ditch that ratty context menu
       return false;
@@ -74,7 +83,40 @@ var controls = {
     canvas.onmousemove = pan; 
     canvas.onwheel = zoom;
 
-//    canvas.ontouchstart = setTipPoint;
-//    canvas.ontouchend = setTailPoint;
+
+    // TOUCH CONTROLS
+
+    this.hammer = new Hammer(canvas, {});
+    this.hammer.get('pinch').set({enable: true});
+
+    this.hMan = new Hammer.Manager(canvas);
+    this.hPan = new Hammer.Pan('pan', 1, 50);
+    this.hPinch = new Hammer.Pinch();
+    //this.hSwipe = new Hammer.Swipe('swipe', 1, 50, 30, 0.01);
+
+    this.hMan.add(this.hPan);
+    this.hMan.add(this.hPinch);
+    //this.hMan.add(this.hSwipe);
+    
+    function touchStartPan(e) {
+    }
+    function touchMovePan(e) {
+      camera.rotateTheta(-0.0001 * e.deltaX);
+      camera.rotatePhi(-0.0001 * e.deltaY);
+    }
+    function touchStopPan(e) {
+    }
+    function touchMoveCancel(e) {
+      physics.flashMessage("poo");
+    }
+    function touchPinch(e) {
+      camera.applyZoom(((e.scale) - 1) * 0.001);
+      physics.flashMessage(this.lastPinch);
+      this.lastPinch = e.scale;
+    }
+
+    this.hMan.on('pan', touchMovePan);
+    this.hMan.on('pancancel', touchMoveCancel);
+    this.hMan.on('pinchmove', touchPinch);
   }
 };

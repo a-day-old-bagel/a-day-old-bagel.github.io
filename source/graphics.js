@@ -11,6 +11,7 @@ var graphics = {
   shdr_unif_lPos: undefined,
   width: undefined,
   height: undefined,
+  textOverlay: undefined,
 
   render: function() {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -90,8 +91,10 @@ var graphics = {
   },
 
   init: function(canvas) {
-    // Initialize WebGL
-    
+
+    //https://webglfundamentals.org/webgl/lessons/webgl-text-html.html
+    this.textOverlay = document.getElementById("text");
+
     this.width = canvas.width;
     this.height = canvas.height;
 
@@ -110,7 +113,7 @@ var graphics = {
 
     // Configure WebGL
     gl.viewport(0, 0, this.width, this.height);
-    gl.clearColor(0.25, 0.18, 0.1, 1.0);
+    gl.clearColor(0.125, 0.125, 0.125, 1.0);
     gl.cullFace(gl.BACK);
     gl.frontFace(gl.CCW);
     gl.enable(gl.CULL_FACE);
