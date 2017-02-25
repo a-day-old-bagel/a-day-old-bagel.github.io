@@ -115,7 +115,7 @@ var controls = {
       this.lastPinch = e.scale;
     }
 
-    this.hMan.on('pan', touchMovePan);
+   // this.hMan.on('pan', touchMovePan);
     this.hMan.on('pancancel', touchMoveCancel);
     this.hMan.on('pinchmove', touchPinch);
   }
