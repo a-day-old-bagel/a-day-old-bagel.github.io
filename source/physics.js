@@ -16,6 +16,7 @@ var physics = {
   readyToStrike: false,
   isScratched: false,
   flashedMessageTime: undefined,
+  flashReadyMessage: true,
 
   animate: function() {
 
@@ -208,6 +209,10 @@ var physics = {
         this.isScratched = false;
       }
       this.readyToStrike = true;
+      if (this.flashReadyMessage) {
+        this.flashMessage("Ready to shoot.");
+      }
+      this.flashReadyMessage = true;
     }
 
     // continue cue stick animation if in progress
@@ -235,12 +240,14 @@ var physics = {
   ballInPocket: function(ballNum) {
     if (ballNum == 0) {
       this.flashMessage("SCRATCH!");
+      this.flashReadyMessage = false;
       this.newTime = performance.now();
       this.isScratched = true;
       ball.position[0] = [0, 0];
       ball.velocity[0] = [0, 0.00002];
     } else if (ballNum == 8) {
       this.flashMessage("8-BALL IN!");
+      this.flashReadyMessage = false;
       this.resetGame();
       return;
     }

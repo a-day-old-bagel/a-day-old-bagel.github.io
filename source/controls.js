@@ -9,17 +9,19 @@ var controls = {
   hPan: undefined,
   hPinch: undefined,
   hSwipe: undefined,
-
-  lastPinch: 0.0,
+  hTap: undefined,
+  
+  touchMousePrevent: false,
+  lastPinch: 1.0,
+  touchHasTapped: false,
 
   setUpEvents: function(canvas) {
     
     function doNothing(e) {
-      // just ditch that ratty context menu
       return false;
     };
     function setTipPoint(e) {
-      if (e.button == 0 && physics.readyToStrike) {
+      if (e.button == 0 && physics.readyToStrike && !controls.touchHasTapped) {
         var rect = canvas.getBoundingClientRect();
         var yPlaneIntersect = rayCastPlaneY(e.clientX -
             rect.left, e.clientY - rect.top);
@@ -67,6 +69,8 @@ var controls = {
           cue.isVisible = false;
         }
       }
+      // prevent touch move events from being triggered redundantly
+      controls.touchMousePrevent = true; 
     };
     function zoom(e) {
       camera.applyZoom(0.25 * sign(e.deltaY));
@@ -86,37 +90,88 @@ var controls = {
 
     // TOUCH CONTROLS
 
-    this.hammer = new Hammer(canvas, {});
-    this.hammer.get('pinch').set({enable: true});
-
     this.hMan = new Hammer.Manager(canvas);
-    this.hPan = new Hammer.Pan('pan', 1, 50);
+    this.hPan = new Hammer.Pan('pan', 1, 10);
     this.hPinch = new Hammer.Pinch();
-    //this.hSwipe = new Hammer.Swipe('swipe', 1, 50, 30, 0.01);
-
+    this.hTap = new Hammer.Tap({ event:'singletap' })
+    
     this.hMan.add(this.hPan);
     this.hMan.add(this.hPinch);
-    //this.hMan.add(this.hSwipe);
+    this.hMan.add(this.hTap);
     
-    function touchStartPan(e) {
+    function touchPanStart(e) {
+      if (controls.touchHasTapped && physics.readyToStrike) {
+        var rect = canvas.getBoundingClientRect();
+        var yPlaneIntersect = rayCastPlaneY(e.center.x -
+            rect.left, e.center.y - rect.top);
+        if (yPlaneIntersect != null) {
+          arrow.setTip(yPlaneIntersect);
+          arrow.setTail(yPlaneIntersect);
+          cue.updateMat(arrow.tail_angle, arrow.current_mag);
+          arrow.isDragging = true;
+          cue.isVisible = true;
+        }
+      }
+      controls.touchHasTapped = false;
     }
-    function touchMovePan(e) {
-      camera.rotateTheta(-0.0001 * e.deltaX);
-      camera.rotatePhi(-0.0001 * e.deltaY);
+    function touchPanMove(e) {
+      // prevent touch move events from triggering mouse move events
+      e.preventDefault();
+      // prevent mouse move events from triggering touch move events
+      if (controls.touchMousePrevent == true) {
+        controls.touchMousePrevent = false;
+        return false;
+      }  
+      if (arrow.isDragging) {
+        var rect = canvas.getBoundingClientRect();
+        var yPlaneIntersect = rayCastPlaneY(e.center.x -
+          rect.left, e.center.y - rect.top);
+        if (yPlaneIntersect != null) {
+          arrow.setTail(yPlaneIntersect);
+          cue.updateMat(arrow.tail_angle, arrow.current_mag);
+        }
+      } else {
+        camera.rotateTheta(-0.0001 * e.deltaX);
+        camera.rotatePhi(-0.0001 * e.deltaY);
+      }
     }
-    function touchStopPan(e) {
+    function touchPanStop(e) {
+      if (arrow.isDragging) {
+        var rect = canvas.getBoundingClientRect();
+        var yPlaneIntersect = rayCastPlaneY(e.center.x -
+          rect.left, e.center.y - rect.top);
+        if (yPlaneIntersect != null) {
+          arrow.isDragging = false;
+          arrow.setTail(yPlaneIntersect);
+          cue.updateMat(arrow.tail_angle, arrow.current_mag);
+          physics.strikeCueBall();
+          cue.startStrikeAnimation();
+        }
+      }
     }
-    function touchMoveCancel(e) {
-      physics.flashMessage("poo");
+    function touchPanCancel(e) {
+      if (arrow.isDragging) {
+        arrow.isDragging = false;
+        cue.isVisible = false;
+      }
     }
-    function touchPinch(e) {
-      camera.applyZoom(((e.scale) - 1) * 0.001);
-      physics.flashMessage(this.lastPinch);
-      this.lastPinch = e.scale;
+    function touchPinchStart(e) {
+      controls.lastPinch = 1.0;
+    }
+    function touchPinchMove(e) {
+      camera.applyZoom((controls.lastPinch - e.scale) * 2.0);
+      controls.lastPinch = e.scale;
+    }
+    function touchTap(e) {
+      controls.touchHasTapped = true;
     }
 
-   // this.hMan.on('pan', touchMovePan);
-    this.hMan.on('pancancel', touchMoveCancel);
-    this.hMan.on('pinchmove', touchPinch);
+    this.hMan.on('panstart', touchPanStart);
+    this.hMan.on('panmove', touchPanMove);
+    this.hMan.on('panend', touchPanStop);
+    this.hMan.on('pancancel', touchPanCancel);
+    this.hMan.on('pinchmove', touchPinchMove);
+    this.hMan.on('pinchstart', touchPinchStart);
+    this.hMan.on('singletap', touchTap);
   }
 };
