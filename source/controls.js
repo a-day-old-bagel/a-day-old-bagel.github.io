@@ -131,8 +131,8 @@ var controls = {
           cue.updateMat(arrow.tail_angle, arrow.current_mag);
         }
       } else {
-        camera.rotateTheta(-0.0001 * e.deltaX);
-        camera.rotatePhi(-0.0001 * e.deltaY);
+        camera.rotateTheta(/*sign(e.deltaX) **/ -0.000000001 * e.deltaX * e.deltaX * e.deltaX);
+        camera.rotatePhi(/*sign(e.deltaY) **/ -0.000000001 * e.deltaY * e.deltaY * e.deltaY);
       }
     }
     function touchPanStop(e) {
