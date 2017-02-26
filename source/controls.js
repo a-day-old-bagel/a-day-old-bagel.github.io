@@ -14,6 +14,8 @@ var controls = {
   touchMousePrevent: false,
   lastPinch: 1.0,
   touchHasTapped: false,
+  lastPanX: 0.0,
+  lastPanY: 0.0,
 
   setUpEvents: function(canvas) {
     
@@ -91,7 +93,7 @@ var controls = {
     // TOUCH CONTROLS
 
     this.hMan = new Hammer.Manager(canvas);
-    this.hPan = new Hammer.Pan('pan', 1, 10);
+    this.hPan = new Hammer.Pan('pan', 1, 5);
     this.hPinch = new Hammer.Pinch();
     this.hTap = new Hammer.Tap({ event:'singletap' })
     
@@ -111,6 +113,9 @@ var controls = {
           arrow.isDragging = true;
           cue.isVisible = true;
         }
+      } else {
+        controls.lastPanX = e.deltaX;
+        controls.lastPanY = e.deltaY;
       }
       controls.touchHasTapped = false;
     }
@@ -131,8 +136,10 @@ var controls = {
           cue.updateMat(arrow.tail_angle, arrow.current_mag);
         }
       } else {
-        camera.rotateTheta(/*sign(e.deltaX) **/ -0.000000001 * e.deltaX * e.deltaX * e.deltaX);
-        camera.rotatePhi(/*sign(e.deltaY) **/ -0.000000001 * e.deltaY * e.deltaY * e.deltaY);
+        camera.rotateTheta((controls.lastPanX - e.deltaX) * 0.004);
+        camera.rotatePhi((controls.lastPanY - e.deltaY) * 0.004);
+        controls.lastPanX = e.deltaX;
+        controls.lastPanY = e.deltaY;
       }
     }
     function touchPanStop(e) {
