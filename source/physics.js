@@ -181,7 +181,7 @@ var physics = {
         }
 
         // apply velocity damping (physics phriction phudge)
-        ball.velocity[i] = scale(0.99, ball.velocity[i]);
+        ball.velocity[i] = scale(Math.max(0, 1 - dt * 0.0006), ball.velocity[i]);
         if (length(ball.velocity[i]) < this.ballVelDead) {
           ball.isMoving[i] = false;
           ball.velocity[i] = [0, 0];
