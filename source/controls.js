@@ -171,6 +171,7 @@ var controls = {
       controls.lastPinch = e.scale;
     }
     function touchTap(e) {
+      e.preventDefault();
       controls.touchHasTapped = true;
     }
 
