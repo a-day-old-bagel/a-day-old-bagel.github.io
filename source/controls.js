@@ -20,7 +20,6 @@ var controls = {
   setUpEvents: function(canvas) {
     
     function doNothing(e) {
-      e.preventDefault();
       return false;
     };
     function setTipPoint(e) {
@@ -171,7 +170,6 @@ var controls = {
       controls.lastPinch = e.scale;
     }
     function touchTap(e) {
-      e.preventDefault();
       controls.touchHasTapped = true;
     }
 
@@ -182,6 +180,5 @@ var controls = {
     this.hMan.on('pinchmove', touchPinchMove);
     this.hMan.on('pinchstart', touchPinchStart);
     this.hMan.on('singletap', touchTap);
-    this.hMan.on('doubletap', doNothing);
   }
 };
