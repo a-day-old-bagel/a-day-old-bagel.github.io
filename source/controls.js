@@ -180,5 +180,6 @@ var controls = {
     this.hMan.on('pinchmove', touchPinchMove);
     this.hMan.on('pinchstart', touchPinchStart);
     this.hMan.on('singletap', touchTap);
+    this.hMAn.on('doubletap', doNothing);
   }
 };
