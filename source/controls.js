@@ -86,7 +86,6 @@ var controls = {
     canvas.onmousedown = setTipPoint;
     canvas.onmouseup = setTailPoint;
     canvas.oncontextmenu = doNothing;
-    canvas.ontouchend = doNothing;
     canvas.onmousemove = pan; 
     canvas.onwheel = zoom;
 
