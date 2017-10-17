@@ -9,6 +9,10 @@ license: MIT
 author: bootply.com
 */
 
+/*
+Modified by Galen Cochrane for galencochrane.com
+*/
+
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
 
 html,body {
@@ -51,7 +55,7 @@ footer > .container {
 body {
   padding-top: 51px; 
   background: #1E1E1E;
-  color: #f9f9f9;
+  color: #555555;
 }
 a {
   color:#bcbcbc;

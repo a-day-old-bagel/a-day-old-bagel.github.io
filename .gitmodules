@@ -1,0 +1,3 @@
+[submodule "billiards"]
+	path = billiards
+	url = https://github.com/a-day-old-bagel/billiards

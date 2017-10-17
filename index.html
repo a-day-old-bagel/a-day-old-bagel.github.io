@@ -1,116 +1,42 @@
-<html>
-  
-  <head>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Galen Cochrane</title>
 
-    <link rel="stylesheet" href="css/graphics.css">
-    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+    <!-- Bootstrap & JQuery -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <script id="monolithic.vert" type="text/glsl">
-      attribute vec3 vert;
-      attribute vec2 UV;
-      attribute vec3 norm;
-
-      uniform mat4 viewProjMat, modelMat;
-      uniform vec3 cameraPos, lightPos;
-
-      varying vec2 texCoord;
-      varying vec3 cameraNormal;
-      varying vec3 worldNormal;
-      varying vec3 lightNormal;
-
-      void main () {
-        vec3 worldPos = vec3(modelMat * vec4(vert, 1.0));        
-        texCoord = UV;   
-             
-        worldNormal = vec3 (modelMat * vec4(norm, 0.0));        
-        cameraNormal = cameraPos - worldPos;
-        lightNormal = lightPos - worldPos;
-        
-        gl_Position = viewProjMat * vec4(worldPos, 1.0);
-      }
-    </script>
-
-    <script id="monolithic.frag" type="text/glsl">
-      precision mediump float;
-
-      varying vec2 texCoord;
-      varying vec3 cameraNormal;
-      varying vec3 worldNormal;
-      varying vec3 lightNormal;
-      
-      uniform sampler2D texture;
-      uniform vec3 texSplitter; // [0] = horiz. step [1] = verti step [2] = which panel
-      
-      vec2 calcTexturePanelCoordinates () {
-        float howManyPanelsPerRow = 1.0 / texSplitter.x;
-        return vec2(
-          texCoord.x * texSplitter.x +
-            texSplitter.x * mod(texSplitter.z, howManyPanelsPerRow),
-          texCoord.y * texSplitter.y +
-            texSplitter.y * (1.0 / texSplitter.y - 1.0 - floor(texSplitter.z / howManyPanelsPerRow)));
-      }
-
-      void main () {
-        vec2 realTexCoord = calcTexturePanelCoordinates();
-        vec3 diffuseColor = texture2D(texture, realTexCoord).rgb;
-        vec3 specColor    = vec3(0.9, 0.8, 0.55);
-        // specular power is encoded in texture's normalized alpha channel
-        // later scaled to a range of 0 - 64 (see below)
-        float specPower   = texture2D(texture, realTexCoord).a;
-        
-        vec3 nSurface = normalize(worldNormal);
-        vec3 nCamera = normalize(cameraNormal);
-        vec3 nLight = normalize(lightNormal);        
-        
-        // apply correct-ish diffuse lighting by scaling diffuse color value
-        diffuseColor *=
-          dot (nSurface, nLight) * 0.6 
-          + diffuseColor * 0.4; // ambient diffuse light level: 0.4 of full
-        
-        // apply some attenuation to the diffuse (moody cubic falloff)
-        diffuseColor /= pow(length(lightNormal) * 0.24, 3.0);
-          
-        // apply sort-of-ok specular lighting by scaling specular color value
-        specColor *= specPower * // this first factor is to dim the highlight if power is low
-          pow(max(dot(reflect(-nLight, nSurface), nCamera), 0.0), specPower * 64.0);
-        
-        // fragment color is the sum of scaled diffuse and specular values
-        gl_FragColor = vec4(diffuseColor + specColor, 1.0);        
-      }
-    </script>
-    
-    <script type="text/javascript" src="common/MV.js"></script>
-    <script type="text/javascript" src="common/webgl-utils.js"></script>
-    <script type="text/javascript" src="common/initShaders.js"></script>
-
-    <script type="text/javascript" src="source/billiards.js"></script>
-    <script type="text/javascript" src="source/textures.js"></script>
-    <script type="text/javascript" src="source/controls.js"></script>
-    <script type="text/javascript" src="source/math.js"></script>
-    <script type="text/javascript" src="source/camera.js"></script>
-    <script type="text/javascript" src="source/graphics.js"></script>
-    <script type="text/javascript" src="source/physics.js"></script>
-    <script type="text/javascript" src="source/ball.js"></script>
-    <script type="text/javascript" src="source/cue.js"></script>
-    <script type="text/javascript" src="source/table.js"></script>
-    <script type="text/javascript" src="source/arrow.js"></script>
+    <!-- CSS -->
+    <link href="styles.css" rel="stylesheet">
 
   </head>
-  
-  <body>
-    <div>
-      <canvas id="gl-canvas" style="border: none;"></canvas>
-      <div id="overlay">
-        <span id="text"></span>
+  <body id="container">
+    <div class="page-container">
+
+    <!-- top navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="http://www.galencochrane.com/">Home</a>
+        <a class="navbar-brand" href="https://github.com/a-day-old-bagel/">GitHub</a>
       </div>
-      <div id="instrBox">
-        <p>
-        Instructions: Left-click-drag (or tap-touch-drag) to shoot, Right-click-drag (or touch-drag) to rotate view, scroll (or pinch) to zoom.
-        </p>
+    </nav>
+
+    <div class="container-fluid">
+      <!-- Introduction -->
+      <div class="well" id="glWell" align="center">
+        <h4> Projects and Demos </h4>
+        <p> WebGL demos tested on Firefox and Chrome on Linux and Windows only. </p>
+        <p> Some of them have severe texture rendering issues on macOS and iOS. </p>
       </div>
-    </div><!--/container-->
-  </body>
-  
-</html>
+    </div>
+
+    <div class="container-fluid">
+      <div class="well" id="glWell" align="center">
+        <a href="http://www.galencochrane.com/billiards/index.html" style="color:black;">
+        <h4>3D Billiards Game</h4>
+        <img src="./screens/pool.png" alt="Mountain View" style="height:250px;">
+        </a>
+      </div>
+    </div>
+
+</div></body></html>
