@@ -25,7 +25,7 @@ p,h1,h2,h3,h4 {
 }
 
 hr {
-  border-color:#191919;
+  border-color:#222;
 }
 
 /* wrapper for page content to push down footer */
@@ -42,7 +42,7 @@ hr {
 /* set the fixed height of the footer here */
 footer {
   height: 120px;
-  background-color: #222222;
+  background-color: #222;
   border:0 solid #080808;
   border-top-width: 1px;
   margin-top:50px;
@@ -54,8 +54,8 @@ footer > .container {
 
 body {
   padding-top: 51px; 
-  background: #1E1E1E;
-  color: #555555;
+  background: #222;
+  color: #222;
 }
 a {
   color:#bcbcbc;
@@ -93,7 +93,7 @@ a {
   padding-left:1px;
 }
 #sidebar li a:hover {
-  background-color:#222222;
+  background-color:#202020;
   color:#ffffff;
 }
 
@@ -189,7 +189,7 @@ a {
 }
      
 h3,h4,h5,.panel {
-   color:#555555;
+   color:#222;
 }
 .panel hr {
    border-color:#efefef;
