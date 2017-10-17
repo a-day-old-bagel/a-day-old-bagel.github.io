@@ -1,3 +1,12 @@
 [submodule "billiards"]
 	path = billiards
 	url = https://github.com/a-day-old-bagel/billiards
+[submodule "webgl_raytracer"]
+	path = webgl_raytracer
+	url = https://github.com/a-day-old-bagel/webgl_raytracer
+[submodule "endTimes"]
+	path = endTimes
+	url = https://github.com/a-day-old-bagel/endTimes
+[submodule "mocap"]
+	path = mocap
+	url = https://github.com/a-day-old-bagel/mocap
