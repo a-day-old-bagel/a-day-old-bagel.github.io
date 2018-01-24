@@ -18,14 +18,17 @@ Modified by Galen Cochrane for galencochrane.com
 html,body {
   height: 100%;
   font-family: 'Droid Sans Mono', sans-serif;
+  font-size: 110%;
 }
+
+h1 { font-size: 2em }
+h2 { font-size: 1.75em }
+h3 { font-size: 1.5em }
+h4 { font-size: 1.25em }
+h5 { font-size: 1.125em }
 
 p,h1,h2,h3,h4 {
   font-family: 'Droid Sans Mono', sans-serif;
-}
-
-hr {
-  border-color:#222;
 }
 
 /* wrapper for page content to push down footer */
@@ -55,11 +58,20 @@ footer > .container {
 body {
   padding-top: 51px; 
   background: #222;
-  color: #222;
+  color: #aaa;
 }
 a {
-  color:#222;
+  color:#aaa;
+  text-decoration: none!important;
 }
+a:hover {
+  color:#eee;
+}
+
+
+
+
+
 .text-center {
   padding-top: 20px;
 }
@@ -93,9 +105,12 @@ a {
   padding-left:1px;
 }
 #sidebar li a:hover {
-  background-color:#202020;
-  color:#ffffff;
+  background-color:#222;
+  color:#fff;
 }
+
+
+
 
 /* collapsed sidebar styles */
 @media screen and (max-width: 767px) {
@@ -161,11 +176,11 @@ a {
 }
 
 /* theme */
-.btn,.form-control,.alert,.progress,.panel,.list-group,.well,.list-group-item:first-child {border-radius:1px;box-shadow:0 0 0;}
+.btn,.form-control,.alert,.progress,.panel,.list-group,.well,.list-group-item:first-child {border-radius:20px;box-shadow:0 0 0;}
 .btn {border-color:transparent;}
 .btn-default,.well {
-  background-color:#cccccc;
-  border-color:#c0c0c0;
+  background-color:#333;
+  border-color:#333;
 }
 .btn-primary,.label-primary,.list-group-item.active,.list-group-item.active:hover,.list-group-item.active:focus,.btn.active,a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
    background-color:#0099CC;
@@ -187,12 +202,8 @@ a {
 .nav-tabs>li>a {
   border-radius:0;
 }
-     
-h3,h4,h5,.panel {
-   color:#222;
-}
-.panel hr {
-   border-color:#efefef;
-}
 
-
+.panel {
+  color: #222;
+  border-color: #efefef;
+}

@@ -1,4 +1,7 @@
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Galen Cochrane</title>
 
     <!-- Bootstrap & JQuery -->
@@ -8,8 +11,8 @@
 
     <!-- CSS -->
     <link href="styles.css" rel="stylesheet">
-
   </head>
+
   <body id="container">
     <div class="page-container">
 
@@ -23,70 +26,71 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
-      <!-- Introduction -->
-      <div class="well" id="glWell" align="center">
-        <h4> Demos </h4>
-        <p> WebGL demos tested on Firefox and Chrome on Linux and Windows only. </p>
-        <p> Some of them have severe texture rendering issues on macOS and iOS. </p>
-      </div>
-    </div>
+
+    <article>
+		<div class="container-fluid">
+	      <!-- Introduction -->
+	      <div class="well" id="well0" align="center">
+	        <h1> Demos </h1>
+	        <p> These WebGL demos have been tested on Firefox and Chrome in Linux and Windows only. Some of them have texture rendering issues on macOS and iOS, but I don't own any apple hardware with which to test them. I haven't implemented any loading screens, so you may have to wait a few seconds for some of the textures to load.</p>
+	      </div>
+	    </div>
+
+	    <div class="container-fluid">
+	      <div class="well" id="well1" align="center">
+	        <a href="http://www.galencochrane.com/billiards">
+	        <h2>WebGL Billiards</h2>
+	        <p> Instructions: Left-click-drag (or double-touch-drag) to shoot. Right-click-drag (or touch-drag) to orbit, scroll (or pinch) to zoom. Zoomed view re-focuses on cue ball every time balls come to a stop. </p>
+	        <img src="./screens/pool.png" alt="Mountain View" style="height:250px;">
+	        </a>
+	      </div>
+	    </div>
+
+	    <div class="container-fluid">
+	      <div class="well" id="well2" align="center">
+	        <a href="http://www.galencochrane.com/webgl_raytracer">
+	        <h2>WebGL Realtime Raytracer</h2>
+	        <img src="./screens/raytrace.png" alt="Mountain View" style="height:250px;">
+	        </a>
+	      </div>
+	    </div>
+
+	    <div class="container-fluid">
+	      <div class="well" id="well3" align="center">
+	        <a href="http://www.galencochrane.com/endTimes">
+	        <h2>WebGL Planet Shader with Animated Weather</h2>
+	        <p> Click-drag to rotate view. Scroll to zoom. Or use arrow keys to pan/zoom. </p>
+	        <p> Spacebar pauses/unpauses the animation. Use [ and ] to decrease or increase </p>
+	        <p> animation speed. </p>
+	        <img src="./screens/earth.png" alt="Mountain View" style="height:250px;">
+	        </a>
+	        <p> <a href="http://www.humus.name/index.php?page=Textures"> Credits for Earth texture go to Humus </a> </p>
+	      </div>
+	    </div>
+
+	    <div class="container-fluid">
+	      <div class="well" id="well4" align="center">
+	        <a href="http://www.galencochrane.com/mocap">
+	        <h2>WebGL Motion Capture Playback</h2>
+	        <img src="./screens/mocap.png" alt="Mountain View" style="height:250px;">
+	        </a>
+	      </div>
+	    </div>
+    </article>
+
 
     <div class="container-fluid">
-      <div class="well" id="glWell" align="center">
-        <a href="http://www.galencochrane.com/billiards" style="color:black;">
-        <h4>WebGL Billiards</h4>
-        <p> Instructions: Left-click-drag (or double-touch-drag) to shoot. </p>
-        <p> Right-click-drag (or touch-drag) to orbit, scroll (or pinch) to zoom. </p>
-        <p> Zoomed view re-focuses on cue ball every time balls come to a stop. </p>
-        <img src="./screens/pool.png" alt="Mountain View" style="height:250px;">
+      <div class="well" id="well5" align="center">
+        <a href="http://www.galencochrane.com/projects">
+        <h2>Other Projects</h2>
         </a>
       </div>
     </div>
 
     <div class="container-fluid">
-      <div class="well" id="glWell" align="center">
-        <a href="http://www.galencochrane.com/webgl_raytracer" style="color:black;">
-        <h4>WebGL Realtime Raytracer</h4>
-        <img src="./screens/raytrace.png" alt="Mountain View" style="height:250px;">
-        </a>
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <div class="well" id="glWell" align="center">
-        <a href="http://www.galencochrane.com/endTimes" style="color:black;">
-        <h4>WebGL Planet Shader with Animated Weather</h4>
-        <p> Click-drag to rotate view. Scroll to zoom. Or use arrow keys to pan/zoom. </p>
-        <p> Spacebar pauses/unpauses the animation. Use [ and ] to decrease or increase </p>
-        <p> animation speed. </p>
-        <img src="./screens/earth.png" alt="Mountain View" style="height:250px;">
-        </a>
-        <p> <a href="http://www.humus.name/index.php?page=Textures"> Credits for Earth texture go to Humus </a> </p>
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <div class="well" id="glWell" align="center">
-        <a href="http://www.galencochrane.com/mocap" style="color:black;">
-        <h4>WebGL Motion Capture Playback</h4>
-        <img src="./screens/mocap.png" alt="Mountain View" style="height:250px;">
-        </a>
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <div class="well" id="glWell" align="center">
-        <a href="http://www.galencochrane.com/projects" style="color:black;">
-        <h4>Other Projects</h4>
-        </a>
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <div class="well" id="glWell" align="center">
-        <a href="http://www.galencochrane.com/about" style="color:black;">
-        <h4>About Me</h4>
+      <div class="well" id="well6" align="center">
+        <a href="http://www.galencochrane.com/about">
+        <h2>About Me</h2>
         </a>
       </div>
     </div>
