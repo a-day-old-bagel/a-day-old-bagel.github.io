@@ -19,10 +19,7 @@ h1 {
   margin-top: 0.25em;
 }
 h2 {
-	margin: 0.5em;
-}
-span {
-  margin: 0.3em;
+	margin: 0.75em;
 }
 
 .nav {
@@ -36,13 +33,16 @@ span {
   border-radius: 1em;
   background-color: #333;
   border-color: #333;
-  padding: 1em;
+  padding: 0.75em;
   margin: 1em;
 }
-.card p {
+.card-body p {
   margin: 1em;
   text-align: left;
 }
+.card span {
+  margin-top: 1em;
+}
 .card-img-top {
-  border-radius: 1em;
+  border-radius: 0.5em;
 }
