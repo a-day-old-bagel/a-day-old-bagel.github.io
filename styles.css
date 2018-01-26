@@ -1,40 +1,45 @@
 
-html,body {
+html, body {
   font-family: 'Exo', sans-serif;
   font-size: 100%;
   background: #222;
   color: #ccc;
 }
-img, .card-img-top {
-  border-radius: 1em;
-}
 a, a:visited {
-  color:#ccc;
+  color: #ccc;
 }
 a:hover {
-  color:#fff;
+  color: #fff;
   text-decoration: none;
 }
+h1 {
+  margin-top: 0.25em;
+}
 h2 {
-	margin:0.5em;
+	margin: 0.5em;
+}
+span {
+  margin: 0.3em;
 }
 
 .nav {
-  padding-top:.8em;
+  padding-top: .8em;
   font-size: 1.3em;
 }
 .container-fluid {
   padding: 0px;
 }
-.card-deck {
-  padding:1em;
-}
 .card {
   border-radius: 1em;
-  background-color:#333;
-  border-color:#333;
-  padding:1em;
+  background-color: #333;
+  border-color: #333;
+  padding: 1em;
+  margin: 1em;
 }
 .card p {
-  margin:1em;
+  margin: 1em;
+  text-align: left;
+}
+.card-img-top {
+  border-radius: 1em;
 }
