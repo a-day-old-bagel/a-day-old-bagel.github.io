@@ -46,3 +46,7 @@ h2 {
 .card-img-top {
   border-radius: 0.5em;
 }
+.card-img-bottom {
+  border-radius: 0.5em;
+  margin-top: 0.75em;
+}

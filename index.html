@@ -36,11 +36,27 @@
 		      <a class="nav-link" href="https://www.linkedin.com/in/galencochrane/" target="_blank">LinkedIn</a>
 		    </li>
 		    <li class="nav-item">
-		      <a class="nav-link disabled" href="#">Résumé</a>
+		      <a class="nav-link" href="./GalenCochraneResume.pdf" target="_blank">Résumé</a>
 		    </li>
 			</ul>
 		</div>
 	</div>
+
+<!-- Construction Notice -->
+	<article id="notice">
+	  <div class="card-deck">
+	    <div class="card text-center" id="card20">
+	    	<div class="card-body">
+	      	<h1 class="card-title">
+	      		This Page Is Under Construction
+	      	</h1>
+	      	<p class="card-text">
+	      		I'm in the process of adding sections for my finished and ongoing projects. Stay tuned for more content, and check out a few of the WebGL demos while you're here. (Updated 2018/2/3)
+	      	</p>
+	    	</div>
+	    </div>
+	  </div>
+  </article>
 
 <!-- WebGL Demos -->
 	<article id="demos">
@@ -56,6 +72,7 @@
 	    	</div>
 	    </div>
   	</div>
+  	<!-- Billiards -->
 	  <div class="card-deck">
       <div class="card text-center" id="card1">
         <a href="billiards/index.html">
@@ -72,6 +89,7 @@
 	        </div>
         </a>
       </div>
+      <!-- Raytracer -->
       <div class="card text-center" id="card2">
         <a href="webgl_raytracer/index.html">
         	<div class="container-fluid">
@@ -85,6 +103,7 @@
         </a>
       </div>
 		</div>
+		<!-- Planet -->
 		<div class="card-deck">
       <div class="card text-center" id="card3">
         <a href="endTimes/index.html">
@@ -105,6 +124,7 @@
         </a>
         <span> <a href="http://www.humus.name/index.php?page=Textures"> Credits for Earth texture go to Humus </a> </span>
       </div>
+      <!-- Mocap -->
       <div class="card text-center" id="card4">
         <a href="mocap/index.html">
         	<div class="container-fluid">
@@ -131,15 +151,77 @@
 	    	</div>
 	    </div>
 	  </div>
+	  <!-- LiDAR -->
 	  <div class="card-deck">
 	  	<div class="card text-center" id="card11">
+  			<div class="container-fluid">
+		  		<div class="card-body">
+		  			<h2 class="card-title">
+	  					Real-time LiDAR Terrain Mapping
+		  			</h2>
+		  			<p class="card-text">
+		  				I got to work on a research project out of Idaho State University with the goal of mapping terrain using a drone equipped with a LiDAR sensor. I worked with the Iterative Closest Point (ICP) algorithm and the LOAM algorithm, a variant of SLAM. I also got to help put together the embedded systems that would run our software. I had a lot of fun with it, and was able to present our research at three different statewide conferences. funding came in part from the NSF Idaho EPSCoR Program and by the National Science Foundation under award number IIA-1301792.
+		  			</p>
+		  			<span>
+		  				<a href="./icurPoster2017.pdf" target="_blank">Here's a poster we presented</a>
+		  			</span>
+		  			<br/>
+		  			<span>
+		  				Pictures coming soon!
+		  			</span>
+		  		</div>
+		  		<!-- <img class="card-img-bottom img-fluid" src="./images/dualTerrainShotSmall.png" alt="terrain"> -->
+		  	</div>
+	  	</div>
+  	</div>
+	  <!-- LOD Terrain -->
+	  <div class="card-deck">
+	  	<div class="card text-center" id="card12">
 	  		<a href="https://github.com/a-day-old-bagel/at3" target="_blank">
 	  			<div class="container-fluid">
-	  				<img class="card-img-top img-fluid" src="./images/dualTerrainShotSmall.png" alt="terrain">
 			  		<div class="card-body">
 			  			<h2 class="card-title">
 		  					Dynamic LOD Procedural Terrain
 			  			</h2>
+			  		</div>
+			  		<img class="card-img-bottom img-fluid" src="./images/dualTerrainShotSmall.png" alt="terrain">
+			  	</div>
+	  		</a>
+	  	</div>
+  	</div>
+  	<!-- AI -->
+	  <div class="card-deck">
+	  	<div class="card text-center" id="card12">
+	  		<a href="https://github.com/a-day-old-bagel/at3" target="_blank">
+	  			<div class="container-fluid">
+			  		<div class="card-body">
+			  			<h2 class="card-title">
+		  					Genetic Algorithm To Develop Neural Nets For Simulated Navigation In A 3D Environment
+			  			</h2>
+			  			<p class="card-text">
+			  				Vehicles are trained to navigate towards targets in a physics simulation on 3D terrain. This was part of an independent study on artificial intelligence taken as C.S. coursework.
+			  			</p>
+			  			<span>
+			  				Pictures coming soon!
+			  			</span>
+			  		</div>
+			  	</div>
+	  		</a>
+	  	</div>
+  	</div>
+  	<!-- Asteroids -->
+  	<div class="card-deck">
+	  	<div class="card text-center" id="card13">
+	  		<a href="https://github.com/a-day-old-bagel/windows_gdi_asteroids_2D" target="_blank">
+	  			<div class="container-fluid">
+	  				<!-- <img class="card-img-top img-fluid" src="./images/dualTerrainShotSmall.png" alt="terrain"> -->
+			  		<div class="card-body">
+			  			<h2 class="card-title">
+		  					Asteroids, but using only Windows' Form-Drawing API (GDI)
+			  			</h2>
+			  			<span>
+			  				Pictures coming soon!
+			  			</span>
 			  		</div>
 			  	</div>
 	  		</a>
@@ -155,6 +237,9 @@
 	      	<h1 class="card-title">
 	      		About Me
 	      	</h1>
+	      	<p class="card-text">
+	      		My name is Galen Cochrane. My passion is creation. I've found an outlet for that passion in software development and graphics research projects during my time as an undergraduate at Idaho State University. I'm graduating in May of 2018 with a B.S. in Computer Science and a B.A. in Physics. This page is a place for me to display my more interesting projects that I've either finished, or that I'm still working on. I'm currently looking for new opportunities to work with other creators and engineers on the technology of tomorrow.
+	      	</p>
 	    	</div>
 	    </div>
 	  </div>
